@@ -1,5 +1,5 @@
 <p align="center">
-<img width="auto" src="https://www.thesouthafrican.com/wp-content/uploads/2022/12/ALX-800x529.jpg" alt="alx_logo">
+<img width="250" src="https://www.thesouthafrican.com/wp-content/uploads/2022/12/ALX-800x529.jpg" alt="alx_logo">
 </p>
 
 <h1 align="center"> SIMPLE SHELL GROUP PROJECT </h1>
