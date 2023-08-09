@@ -1,9 +1,9 @@
 <p align="center">
-
-	<img width="auto" src="https://www.thesouthafrican.com/wp-content/uploads/2022/12/ALX-800x529.jpg" alt="alx_logo">
+<img width="auto" src="https://www.thesouthafrican.com/wp-content/uploads/2022/12/ALX-800x529.jpg" alt="alx_logo">
 </p>
 
 <h1 align="center"> SIMPLE SHELL GROUP PROJECT </h1>
+
 > [!WARNING]
 > **NEVER** copy any code, never look at solution (and never give any solution to your friends, you are not helping them by doing so)
 > **ALWAYS** write code alone from scratch after you get help to check that you have actually understood. If you can not do it, you have not understood enough, and need to study more. Do not rewrite code from memory, but from understanding.
@@ -13,11 +13,13 @@
 <details>
 
 <summary> How does shell work?</summary>
+
 A shell is a crucial tool for efficiently navigating the command line of an operating system. It provides users with an intuitive interface, allowing them to effortlessly run programs, manage files, and maintain full control over various aspects of the operating system.
 
 Shells are a vital component of operating systems. They **read**, **interpret**, and **execute** user commands efficiently. Additionally, shells facilitate seamless interaction between users and the operating system by handling **error messages** and **input prompts**.
 
 Here are the steps involved in how a shell works:
+
 ```txt
 1. The shell reads a command from the user.
 
