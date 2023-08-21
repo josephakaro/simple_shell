@@ -1,20 +1,30 @@
-#ifndef _SHELL_H_
-#define _SHELL_H_
+#ifndef SHELL_H
+#define SHELL_H
+
+/* == Global Variables == */
+extern char **environ;
 
 /* == Standard Libraries == */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <sys/stat.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 
-/* == macros == */
+/* == Struct Varaibles == */
 
-/* == Structure Definitions == */
+/* == Prototype functions */
+int hsh_line(char *buffer);
+char *hsh_strcpy(char *dest_file, char *src_file);
+char *hsh_strcat(char *dest_file, char *src_file);
+int hsh_strcmp(char *str1, char *str2);
+char **hsh_parse(char *str, char *delim);
+void *hsh_calloc(unsigned int nmb, unsigned int size);
+int hsh_strlen(char *str);
+char *hsh_getenv(char *hsh_env);
+void hsh_env(void);
+char *hsh_path(char *cmd);
+int execute(char **args);
 
-/* == Prototype functions == */
-
-char parse(char *args);
-int _putchar(char c);
 #endif

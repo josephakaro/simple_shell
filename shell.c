@@ -9,53 +9,81 @@
  * Return: Execute the command entered by user.
  */
 
-int main(int argc, char **argv, char *envp[])
+int main(int argc, char **argv)
 {
-	/* == Variables == */
-	(void)argc;
-	char *args, *token;
-	char *lineptr = NULL, *prompt = ":) ";
-	int status;
-	size_t len;
-	ssize_t line;
-	pid_t pid;
+	int status = 0;
+	char **args;
+	
+	char *buffer = NULL;
+	size_t nread = 0;
+	ssize_t line = 0;
+	char *delim = " \n";
 
-	/* == Run through the loop == */
-	while (1)
-	{
-		if(isatty(0))
-			printf("%s", prompt);
+	do {
+		if (isatty(STDIN_FILENO))
+			printf(":) ");
 
-		line = getline(&lineptr, &len, stdin);
+		line = getline(&buffer, &nread, stdin);
 
-		if(line == -1)
+		if (line == -1 || hsh_strcmp("exit\n", buffer) == 0)
 		{
-			free(lineptr);
+			free(buffer);
 			break;
 		}
+		buffer[line - 1] = '\0';
 
-		strcpy(lineptr, args);
-
-		token = parse(args);
-
-		pid = fork();
-
-		if (pid == 0)
+		if (hsh_strcmp("env", buffer) == 0)
 		{
-			if(execve(args[], args, envp))
-			{
-				perror(":( ");
-				exit(EXIT_FAILURE);
-			}
+			hsh_env();
+			continue;
 		}
 
-		if(pid > 0)
-			wait(&status);
+		if (hsh_line(buffer) == 1)
+		{
+			status = 0;
+			continue;
+		}
+
+		args = hsh_parse(buffer, delim);
+
+		args[0] = hsh_path(args[0]);
+
+		if (args[0] != NULL)
+			status = execute(args);
+		else
+			perror("Error");
+		free(args);
+
+	} while (1);
+
+	return (status);	
+}
+
+/**
+ * execute - execute the given command.
+ *
+ * @args: arguments passed by stdin
+ *
+ * Return: Always Status(success).
+ */
+
+int execute(char **args)
+{
+	int checked, pid;
+
+	pid = fork();
+
+	if (pid == 0)
+	{
+		if (execve(args[0], args, environ) == -1)
+			perror("Error");
+	}
+	else
+	{
+		wait(&checked);
+		if (WIFEXITED(checked))
+			checked = WEXITSTATUS(checked);
 	}
 
-	/* == Clean Ups and shutdown == */
-	_putchar('\n');
-
-	free(lineptr);
-	exit(status);
+	return (checked);
 }
