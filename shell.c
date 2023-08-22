@@ -11,48 +11,49 @@
 
 int main(int argc, char **argv)
 {
-	int status = 0;
-	char **args;
-	
-	char *buffer = NULL;
-	size_t nread = 0;
+	char *buf = NULL, *delim = " \n";
 	ssize_t line = 0;
-	char *delim = " \n";
+	size_t nread = 0;
+	int status = 0;
+	(void)argc;	
+	
+	
 
 	do {
+
 		if (isatty(STDIN_FILENO))
 			printf(":) ");
 
-		line = getline(&buffer, &nread, stdin);
+		line = getline(&buf, &nread, stdin);
 
-		if (line == -1 || hsh_strcmp("exit\n", buffer) == 0)
+		if (line == -1 || hsh_strcmp("exit\n", buf) == 0)
 		{
-			free(buffer);
+			free(buf);
 			break;
 		}
-		buffer[line - 1] = '\0';
+		buf[line - 1] = '\0';
 
-		if (hsh_strcmp("env", buffer) == 0)
+		if (hsh_strcmp("env", buf) == 0)
 		{
 			hsh_env();
 			continue;
 		}
 
-		if (hsh_line(buffer) == 1)
+		if (hsh_line(buf) == 1)
 		{
 			status = 0;
 			continue;
 		}
 
-		args = hsh_parse(buffer, delim);
+		argv = hsh_parse(buf, delim);
 
-		args[0] = hsh_path(args[0]);
+		argv[0] = hsh_path(argv[0]);
 
-		if (args[0] != NULL)
-			status = execute(args);
+		if (argv[0] != NULL)
+			status = execute(argv);
 		else
 			perror("Error");
-		free(args);
+		free(argv);
 
 	} while (1);
 
@@ -67,7 +68,7 @@ int main(int argc, char **argv)
  * Return: Always Status(success).
  */
 
-int execute(char **args)
+int execute(char **argv)
 {
 	int checked, pid;
 
@@ -75,7 +76,7 @@ int execute(char **args)
 
 	if (pid == 0)
 	{
-		if (execve(args[0], args, environ) == -1)
+		if (execve(argv[0], argv, environ) == -1)
 			perror("Error");
 	}
 	else
