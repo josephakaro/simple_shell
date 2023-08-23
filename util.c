@@ -27,7 +27,7 @@ int hsh_line(char *buffer)
  *
  * @ar: array
  * @s: bit size
-
+ *
  * Return: Either a pointer or NULL character.
  */
 
@@ -37,19 +37,16 @@ void *hsh_calloc(unsigned int ar, unsigned int s)
 	unsigned int i = 0;
 
 	if (ar && s)
-	{	
+	{
 		if (ar == 0 || s == 0)
-			 return (NULL);
+			return (NULL);
 
-			p = malloc(ar * s);
-
+		p = malloc(ar * s);
 			if (p == NULL)
 				return (NULL);
-
 		for (; i < (ar * s); i++)
-			 p[i] = 0;
+			p[i] = 0;
 	}
-
 	return (p);
 }
 
@@ -121,8 +118,6 @@ char *hsh_path(char *cmd)
 
 	if (stat(cmd, &index) == 0)
 		return (cmd);
-    
-    /* == Copying and spliting the env typed == */
 	path_copy = malloc(hsh_strlen(path) + 1);
 	path_copy = hsh_strcpy(path_copy, path);
 	path_parsed = hsh_parse(path_copy, delim);
@@ -133,12 +128,10 @@ char *hsh_path(char *cmd)
 
 		if (path_parsed[i][path_len - 1] != '/')
 			path_linked = hsh_strcat(path_parsed[i], "/");
-
 		path_linked = hsh_strcat(path_parsed[i], cmd);
 
 		if (stat(path_linked, &index) == 0)
 			break;
-
 		i++;
 	}
 

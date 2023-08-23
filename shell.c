@@ -3,8 +3,8 @@
 /**
  * main - simple unix like program.
  *
- * @argc:
- * @argv:
+ * @argc: Nth void arguments.
+ * @argv: Array of command argument.
  *
  * Return: Execute the command entered by user.
  */
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 /**
  * execute - execute the given command.
  *
- * @args: arguments passed by stdin
+ * @argv: arguments passed by stdin
  *
  * Return: Always Status(success).
  */
