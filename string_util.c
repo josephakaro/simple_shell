@@ -105,7 +105,6 @@ char *hsh_strcat(char *dest_file, char *src_file)
  * hsh_strlen - string length
  * @str: string
  * Return: result
- *
  */
 
 int hsh_strlen(char *str)
