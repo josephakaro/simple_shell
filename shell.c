@@ -4,7 +4,7 @@
  * main - simple unix like program.
  *
  * @argc: Nth void arguments.
- * @argv: Array of command argument.
+ * @argv: Array of command
  *
  * Return: Execute the command entered by user.
  */
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		if (line == -1 || hsh_strcmp("exit\n", buffer) == 0)
 		{
 			free(buffer);
-			return (-1);
+			break;
 		}
 		buffer[line - 1] = '\0';
 		if (hsh_strcmp("env", buffer) == 0)
@@ -45,7 +45,6 @@ int main(int argc, char **argv)
 			status = execute(argv);
 		else
 			perror("Error");
-
 		free(argv);
 	} while (1);
 	return (status);
