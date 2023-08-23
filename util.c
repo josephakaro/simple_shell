@@ -122,7 +122,7 @@ char *hsh_path(char *cmd)
 	path_copy = hsh_strcpy(path_copy, path);
 	path_parsed = hsh_parse(path_copy, delim);
 
-	while (path_parsed[i])
+	for (; path_parsed[i] ; i++)
 	{
 		path_len = hsh_strlen(path_parsed[i]);
 
@@ -132,7 +132,6 @@ char *hsh_path(char *cmd)
 
 		if (stat(path_linked, &index) == 0)
 			break;
-		i++;
 	}
 
 	free(path_copy);

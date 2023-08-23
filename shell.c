@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		if (line == -1 || hsh_strcmp("exit\n", buffer) == 0)
 		{
 			free(buffer);
-			break;
+			return (-1);
 		}
 		buffer[line - 1] = '\0';
 		if (hsh_strcmp("env", buffer) == 0)
@@ -45,6 +45,7 @@ int main(int argc, char **argv)
 			status = execute(argv);
 		else
 			perror("Error");
+
 		free(argv);
 	} while (1);
 	return (status);

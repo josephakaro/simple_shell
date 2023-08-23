@@ -20,7 +20,7 @@ char *hsh_strcpy(char *dest_file, char *src_file);
 char *hsh_strcat(char *dest_file, char *src_file);
 int hsh_strcmp(char *str1, char *str2);
 char **hsh_parse(char *str, char *delim);
-void *hsh_calloc(unsigned int nmb, unsigned int size);
+void *hsh_calloc(unsigned int ar, unsigned int s);
 int hsh_strlen(char *str);
 char *hsh_getenv(char *hsh_env);
 void hsh_env(void);
