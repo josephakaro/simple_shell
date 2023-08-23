@@ -66,6 +66,7 @@ char *hsh_getenv(char *hsh_env)
 	int i = 0;
 	int count;
 	int t;
+
 	while (environ[i])
 	{
 		t = 1;
