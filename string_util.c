@@ -2,10 +2,8 @@
 
 /**
  * hsh_strcmp - Comperes the given two strings.
- *
  * @str1: The first string
  * @str2: The second string.
- *
  * Return: The compared strings.
  */
 
