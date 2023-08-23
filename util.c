@@ -36,19 +36,19 @@ void *hsh_calloc(unsigned int ar, unsigned int s)
 	char *p = NULL;
 	unsigned int i = 0;
 
-    if (ar && s)
-    {
-	    if (ar == 0 || s == 0)
-		    return (NULL);
+	if (ar && s)
+	{	
+		if (ar == 0 || s == 0)
+			 return (NULL);
 
-	    p = malloc(ar * s);
+			p = malloc(ar * s);
 
-	    if (p == NULL)
-		    return (NULL);
+			if (p == NULL)
+				return (NULL);
 
-	    for (; i < (ar * s); i++)
-		    p[i] = 0;
-    }
+		for (; i < (ar * s); i++)
+			 p[i] = 0;
+	}
 
 	return (p);
 }
@@ -64,9 +64,8 @@ void *hsh_calloc(unsigned int ar, unsigned int s)
 char *hsh_getenv(char *hsh_env)
 {
 	int i = 0;
-    int count;
+	int count;
 	int t;
-
 	while (environ[i])
 	{
 		t = 1;
@@ -111,13 +110,13 @@ char *hsh_path(char *cmd)
 {
 	char *path = hsh_getenv("PATH");
 	char *path_linked = NULL;
-    char *path_copy;
+	char *path_copy;
 	char **path_parsed;
-    char *delim = ":";
+	char *delim = ":";
 
 	struct stat index;
-    int path_len = 0;
-    int i = 0;
+	int path_len = 0;
+	int i = 0;
 
 	if (stat(cmd, &index) == 0)
 		return (cmd);
