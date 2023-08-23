@@ -15,9 +15,9 @@ int main(int argc, char **argv)
 	ssize_t line = 0;
 	size_t nread = 0;
 	int status = 0;
-	(void)argc;	
-	
-	
+	(void)argc;
+
+
 
 	do {
 
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 
 	} while (1);
 
-	return (status);	
+	return (status);
 }
 
 /**
